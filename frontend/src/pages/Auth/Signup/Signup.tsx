@@ -94,7 +94,7 @@ others:{
   }
 
   const handleGoogleLogin =()=>{
-    window.open(`${process.env.BACKEND_URL}/api/auth/google`, '_blank')
+    window.open(`${process.env.BACKEND_URL}/auth/google`, '_blank')
   }
 
   return (
