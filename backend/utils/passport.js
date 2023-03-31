@@ -9,8 +9,11 @@ passport.use(new GoogleStrategy({
     passReqToCallback: true
 },
     async function (request, accessToken, refreshToken, profile, cb) {
+        // console.log(profile)
         const googleUser = {
-            username: profile.displayName,
+
+            firstName: profile.name?.givenName,
+            lastName: profile.name?.familyName,
             email: profile._json.email,
             avatar: profile._json.picture,
         };

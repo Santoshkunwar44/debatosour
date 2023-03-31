@@ -10,7 +10,6 @@ type MessageTextProps={
 }
 
 const MessageText:React.FC<MessageTextProps> = ({text,own}) => {
-
   const [isHovered,setIsHovered] =useState<Boolean>(false )
   return (
     <MessageTextWrapper onMouseLeave={()=>setIsHovered(false)} onMouseOver={()=>setIsHovered(true)} className="own" style={{marginLeft:own ? "auto" :"", flexDirection : own ? "row-reverse":"row"}}>

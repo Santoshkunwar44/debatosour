@@ -1,10 +1,13 @@
 import React from 'react'
 import { MessageInputWrapper } from './MessageInput.styles'
 import {BsFillSendFill} from "react-icons/bs"
-const MessageInput:React.FC = () => {
+type MessageInputPropType={
+  isLiveChat?:boolean ;
+}
+const MessageInput:React.FC<MessageInputPropType> = ({isLiveChat}) => {
   return (
-    <MessageInputWrapper>
-        <input className='message_input' type="text" placeholder='Ask anything to Debatasour chatbot...' />
+    <MessageInputWrapper  isLiveChat={isLiveChat ? true :false} >
+        <input className='message_input' type="text" placeholder={` ${!isLiveChat ? "Ask anything to Debatasour chatbot..." :"Say something in live chat..."}`} />
             <div className='sent_message_box'>
                 <BsFillSendFill/>
 

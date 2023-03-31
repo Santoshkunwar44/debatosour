@@ -1,25 +1,30 @@
 import styled from "styled-components";
 
 export const LiveChatWrapper = styled.div`
-
 flex: 9;
 height: 100%;
  backdrop-filter: blur(45px);
  border-radius: 10px;
  display: flex;
  flex-direction: column;
- gap: 2rem;
+ gap: 1rem;
  .live_chat_header{
-    background-color: rgb(174 174 174 / 21%);
+    background :linear-gradient(45deg, rgb(174 174 174 / 5%), rgb(64 70 221 / 6%), rgba(174, 174, 174, 0.21));
  backdrop-filter: blur(45px);
  height: 60px;
  border-radius: 10px;
  display: flex;
  align-items: center;
- padding: 0 1rem;
-
+ padding: 2rem 1rem;
+ h2{
+    font-size: 30px;
+    font-weight: bold;
+   color: rgb(14, 11, 61);
+ }
  }
 .live_chat_message_list{
+   height:100%;
+   overflow-y: scroll;
     padding: 1rem 10px;
     border-radius: 20px;
     background: linear-gradient(45deg, rgb(174 174 174 / 5%), rgb(64 70 221 / 6%), rgba(174, 174, 174, 0.21));

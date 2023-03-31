@@ -48,6 +48,7 @@ class AuthController {
                     ...userExist._doc,
                     lastLoggedIn
                 }
+                req.session.save()
                 res.status(200).json({ message: { ...userExist._doc, lastLoggedIn }, success: true })
             } else {
                 res.status(403).json({ message: "invalid credentails", success: false })
@@ -66,6 +67,7 @@ class AuthController {
                 if (err) {
                     throw Error(err)
                 }
+                res.clearCookie("debatosour.sid")
                 res.status(200).json({ message: "successfully logged out", success: true })
             })
         } catch (error) {

@@ -1,0 +1,18 @@
+import styled from "styled-components";
+
+
+export const SearchParticipantsListWrapper=styled.div`
+    background: var(--dark_gradient_bg) !important;
+.participants_list{
+    display: flex;
+    flex-direction:column;
+    margin-top: 10px;
+    gap: 10px;
+    height: auto;
+    max-height: 300px;
+    overflow-y: scroll;
+    text-align: center;
+
+}
+
+`

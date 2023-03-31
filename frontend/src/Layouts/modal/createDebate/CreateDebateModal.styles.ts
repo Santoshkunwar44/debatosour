@@ -1,13 +1,25 @@
 import styled from "styled-components";
 
 
-export const DebateModalWrapper = styled.div`
+export const CreateDebateWrapper = styled.div`
 
 width: 100%;
 display:flex;
 flex-direction: column;
 gap: 1rem;
 padding-bottom: 1rem;
+.participants_list{
+    display: flex;
+    flex-direction:column;
+    margin-top: 10px;
+    gap: 10px;
+    height: auto;
+    max-height: 300px;
+    overflow-y: scroll;
+    text-align: center;
+
+}
+
 
 input{
             height: 40px;
@@ -64,13 +76,23 @@ input{
         }
     }
 }
-.form_label{
-    font-size: 12px;
-    letter-spacing: 1px;
-    color: grey;
-    margin-bottom: 5px;
-    display: block;
+.lable_row{
+    display: flex;
+    justify-content: space-between;
 
+    span{
+        font-size: 10px;
+        color: rgb(64, 70, 221);;
+
+    }
+    .form_label{
+        font-size: 12px;
+        letter-spacing: 1px;
+        color: grey;
+        margin-bottom: 5px;
+        display: block;
+        
+    }
 }
 .create_debate_btn{
     background-color: rgb(64, 70, 221);

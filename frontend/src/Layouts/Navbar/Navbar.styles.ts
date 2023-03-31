@@ -28,8 +28,43 @@ padding: 0 10px;
 
 .other_button_box{
     display: flex;
+    gap:2rem;
 
-    gap:1rem;
+.nav_list{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    text-transform: uppercase;
+    li{
+        position: relative;
+        list-style: none;
+    letter-spacing: 0.8px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    color: rgb(14 11 61 / 76%);
+    filter: blur(0.61px);
+   
+
+}
+    }
+    .active_li{
+        filter: blur(0px) !important;
+        ::after{
+    content: "";
+    bottom: -8px;
+    width: 90%;
+    right: 0;
+
+    position: absolute;
+    height: 4px;
+    border-radius: 10px;
+    background:linear-gradient(45deg, rgba(174, 174, 174, 0.11), rgba(174, 174, 174, 0.21) , rgb(64 70 221 / 52%), rgb(64 70 221 / 62%));
+
+
+    }
+}
+
 .loggedInUserBox{
     display: flex;
     gap: 10px;

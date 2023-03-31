@@ -1,11 +1,15 @@
+import { UserType } from '../../../utils/types'
 import { ParticipationPersonWrapper } from './ParticipationPerson.styles'
 
-const ParticipantPerson = () => {
+type ParticipationPersonType = {
+  person:UserType
+} 
+const ParticipantPerson:React.FC<ParticipationPersonType> = ({person}) => {
   return (
     <ParticipationPersonWrapper>
-    <img className='participation_person_img'  src='/images/user.jpeg' alt='userImg'/>
+    <img className='participation_person_img'  src={person.avatar} alt='userImg'/>
     <p>
-      Sam Sommers
+      {person.firstName}
     </p>
     </ParticipationPersonWrapper>
   )

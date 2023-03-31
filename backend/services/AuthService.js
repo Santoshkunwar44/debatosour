@@ -22,7 +22,7 @@ class AuthService {
                     return req.session.user
                 } else {
                     const salt = await bcrypt.genSalt(10)
-                    const hashedPassword = await bcrypt.hash(user.username, salt)
+                    const hashedPassword = await bcrypt.hash(user.firstName, salt)
                     user.password = hashedPassword
                     user.lastLoggedIn = Date.now()
                     const User = await UserModel.create(user)

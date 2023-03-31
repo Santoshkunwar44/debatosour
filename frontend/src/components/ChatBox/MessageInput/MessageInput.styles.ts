@@ -1,10 +1,15 @@
 import styled from "styled-components";
 
-export const MessageInputWrapper = styled.div`
 
-width: 80%;
-height: 60px;
-padding: 0 1rem;
+type MessageInputWrapperPropType ={
+    isLiveChat:boolean
+}
+
+export const MessageInputWrapper = styled.div<MessageInputWrapperPropType>`
+
+width: ${props => props.isLiveChat ? "100%" :"80%"};
+height: ${props => props.isLiveChat ? "80px" :"60px"};
+padding:${props => props.isLiveChat ? "0 0.5rem" :"0 1rem"};
 border-radius: 10px;
 background-color: #EFF3F6;
 background: linear-gradient(45deg, rgba(174, 174, 174, 0.21), rgb(64 70 221 / 17%),rgba(174, 174, 174, 0.21));

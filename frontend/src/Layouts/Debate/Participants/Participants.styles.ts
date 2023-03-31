@@ -13,15 +13,22 @@ background: linear-gradient(45deg, rgb(174 174 174 / 5%), rgb(64 70 221 / 6%), r
  
  border-radius: 10px;
 .participatants_header{
+    background:  linear-gradient(45deg, rgb(174 174 174 / 5%), rgb(64 70 221 / 6%), rgba(174, 174, 174, 0.21));;
     width: 100%;
     display: flex;
     align-items: flex-start;
-    align-items: center;
-    background-color: #ffffff;
+    gap: 10px;
+    flex-direction: column;
 
     padding: 10px ;
     border-radius: 8px;
-
+p{
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: rgb(14, 11, 61);
+    text-transform: uppercase;
+    font-weight: bold;
+}
     .participants_other{
         width: 40px;
         height: 40px;
@@ -42,7 +49,13 @@ background: linear-gradient(45deg, rgb(174 174 174 / 5%), rgb(64 70 221 / 6%), r
         font-weight: 700;
         font-size: 14px;
     }
-    img{
+    .avatars{
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        
+    }
+    /* img{
         width: 40px;
         height: 40px;
         border-radius: 50%;
@@ -54,7 +67,7 @@ background: linear-gradient(45deg, rgb(174 174 174 / 5%), rgb(64 70 221 / 6%), r
         :nth-of-type(3){
             transform: translateX(-28px);
         }
-            }
+            } */
 }
 
 .participation_person_list{

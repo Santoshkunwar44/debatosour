@@ -4,19 +4,17 @@ const session = require("express-session")
 const MongoStore = require("connect-mongo");
 const passport = require("passport");
 const cookieParser = require("cookie-parser")
-
+const morgan = require("morgan")
 const cors = require("cors")
 require("dotenv").config()
 
 
 
-app.set('trust proxy', 1) // trust first proxy
 
 app.use(cors({
     origin: [
         process.env.FRONTEND_URL,
         "http://localhost:3000",
-        "http://127.0.0.1:3000",
     ],
     methods: ['POST', 'PUT', 'DELETE', 'OPTIONS', 'GET'],
     credentials: true
@@ -30,9 +28,11 @@ app.use(function (req, res, next) {
 app.set('trust proxy', 1) // trust first proxy
 
 
+app.use(cookieParser())
+app.use(morgan("common"))
+app.use(express.json())
 require("./utils/db")()
 require("./utils/passport")
-app.use(cookieParser())
 
 const store = MongoStore.create({
     mongoUrl: process.env.MONGO_URI,
@@ -44,20 +44,23 @@ const store = MongoStore.create({
 
 app.use(session({
     name: "debatosour.sid",
-    secret: process.env.SESSION_SECRET,
-    resave: true,
-    saveUninitialized: false,
+    secret: "helloworld",
+    resave: false,
+
+    saveUninitialized: true,
     store,
     cookie: {
         secure: false,
         maxAge: 31556952000,
         httpOnly: true,
+        sameSite: "none"
     },
 }))
 // middlewares
-app.use(express.json())
 app.use(passport.initialize())
 app.use(passport.session())
+
+
 
 
 require("./AllRoutes")(app)

@@ -1,6 +1,9 @@
+import { useToast } from '@chakra-ui/react';
 import React ,{useState} from 'react'
+import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'
 import { AddLoggedInUser } from '../../../redux/action/actionCreators';
+import { State } from '../../../redux/reducer';
 import { RegisterUserApi } from '../../../utils/Api';
 import { AuthWraper } from '../Auth.styles'
 
@@ -35,8 +38,7 @@ others:{
 }
   })
   const navigate =  useNavigate()
-
-
+  const toast = useToast()
   const handleInputChange =(name:string,value:string)=>{
     setUserDetails((prev)=>({...prev, [ name]:value}))
   }
@@ -72,9 +74,16 @@ others:{
         const  res = await RegisterUserApi(payloadData);
         console.log(res)
         if(res.status===200){
-          console.log("User successfully registered")
           AddLoggedInUser(res.data.message)
           navigate("/")
+          toast({
+            title: 'Account created.',
+            description: "You registered successfully",
+            status: 'success',
+            duration: 5000,
+            position:"top",
+            isClosable: true,
+          })
         }else{
           throw Error(res.data.message)
         }
@@ -85,7 +94,7 @@ others:{
   }
 
   const handleGoogleLogin =()=>{
-    window.open("http://localhost:8000/api/auth/google")
+    window.open(`${process.env.BACKEND_URL}/api/auth/google`, '_blank')
   }
 
   return (

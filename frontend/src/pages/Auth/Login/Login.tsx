@@ -5,6 +5,7 @@ import { LoginUserApi } from '../../../utils/Api';
 import { AuthWraper } from '../Auth.styles'
 import {bindActionCreators} from "redux"
 import { actionCreators } from '../../../redux/store';
+import { useToast } from '@chakra-ui/react';
 
 type loginState={
   error:string;
@@ -27,7 +28,7 @@ const Login:React.FC = () => {
     const navigate =useNavigate();
     const dispatch  = useDispatch()
     const {AddLoggedInUser} =  bindActionCreators(actionCreators,dispatch )
-
+    const toast = useToast()
     const handleInputChange=(name:string,value:string)=>{
       setLoginData(prev=>({
         ...prev, data:{...prev.data, [name]:value}
@@ -46,19 +47,35 @@ const Login:React.FC = () => {
       if(res.status===200){
         AddLoggedInUser(res.data.message)
         navigate("/")
+        toast({
+          title: '',
+          description: "You Logged in successfully",
+          status: 'success',
+          duration: 5000,
+          position:"top",
+          isClosable: true,
+        })
       }else{
         throw Error(res.data.message)
       }
-
-
-      } catch (error) {
-        console.log(error)
+      
+      
+    } catch (error) {
+      toast({
+        title: '',
+        description: "Invalid Credentials",
+        status: 'error',
+        duration: 5000,
+        position:"top",
+        isClosable: true,
+      })
+      console.log(error)
       }
 
 
     }
     const handleGoogleLogin =()=>{
-      window.open("http://localhost:8000/api/auth/google")
+         window.open(`${process.env.BACKEND_URL}/api/auth/google`, '_blank')
     }
 
   return (

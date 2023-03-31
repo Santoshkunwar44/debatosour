@@ -2,9 +2,9 @@ import { BannerWrapper } from "./Banner.styles"
 import {MdOutlineAdd ,MdModelTraining} from "react-icons/md";
 import {HiOutlineViewfinderCircle} from "react-icons/hi2";
 import { Link } from "react-router-dom";
-import { CreateDebateModal } from "../modal/createDebate/CreateDebateModal";
+  const Banner = () => {
 
-const Banner = () => {
+
   return (
     <BannerWrapper>
         <div className="banner_bg_image">
@@ -15,11 +15,11 @@ const Banner = () => {
 
 
         </div>
-        <div className="banner_content">
+        <div className="banner_content" >
                 <p className="top_site_info">Virtual Debate platform</p>
-            <h1 className="main_text">Online platform to organize</h1>
+            <h1 className="main_text_banner">Online platform to organize</h1>
             <div className="bottom_text">
-            <h1 className="main_text">
+            <h1 className="main_text_banner">
             a virtual debate for all <img className="quodium" src="/images/qodium.png" alt="quodium" />      </h1>   
             <p className="secondary_main_text">Debatasour lets a users to create a online debate and manages the audience  to watch the debate & provide  feedback to the debators. </p>
         
@@ -27,17 +27,16 @@ const Banner = () => {
         </div>
         <div className="banne_bottom_option_box">
 
-        <CreateDebateModal children={
-          <>
+      
+  <Link to={"/create"}>
            <button className="banner_bottom_button_option_button">
         <MdOutlineAdd/>  
         <p>
               Create Debate 
             </p>
         </button>
-          </>
-        }/> 
-       
+  </Link>
+ 
         <Link to="/chatbot">
         <button className="prepare_for_debate_btn">
           <MdModelTraining/>

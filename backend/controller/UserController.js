@@ -42,7 +42,8 @@ class UserController {
     }
 
     async getLoggedInUser(req, res) {
-        const sessionUser = req.session?.passport?.user
+        const sessionUser = req.session?.passport?.user || req.session.user;
+
         if (sessionUser) {
 
 
@@ -50,6 +51,31 @@ class UserController {
         } else {
 
             res.status(403).json({ message: "You are not logged in", success: false })
+        }
+    }
+
+    async searchUser(req, res) {
+        const { userId } = req.query
+        let keyword = {}
+        try {
+            if (!userId) {
+
+                keyword = req.query.search_query ? {
+                    $or: [
+                        { firstName: { $regex: req.query.search_query, $options: "i" } },
+                        { lastName: { $regex: req.query.search_query, $options: "i" } },
+                        { email: { $regex: req.query.search_query, $options: "i" } },
+                    ]
+                } : {}
+
+            } else {
+                keyword = { _id: userId }
+            }
+            const fetchedUser = await UserModel.find(keyword)
+            res.status(200).json({ message: fetchedUser, success: true })
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: error, success: false })
         }
     }
 

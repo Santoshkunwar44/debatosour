@@ -77,7 +77,7 @@ z-index: 2;
         align-items: center;
         text-align: center;
     }
-.main_text{
+.main_text_banner{
     text-align: center;
     font-size: 40px;
     line-height: 52px;
@@ -114,7 +114,7 @@ z-index: 2;
         outline: none;
         border: none;
         background-color: rgb(64 70 221);
-        border-radius:1px;
+        border-radius:3px;
         height: 40px;
         padding: 0 0.51rem;
         color: white;

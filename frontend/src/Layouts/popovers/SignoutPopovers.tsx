@@ -5,13 +5,15 @@ import {
     PopoverCloseButton,
     PopoverArrow,
     PopoverBody,
+    useToast,
 } from '@chakra-ui/react'
 
 
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { actionCreators } from '../../redux/store'
+import { actionCreators, State } from '../../redux/store'
 import { logoutApi } from '../../utils/Api'
 import { SignoutPopoverWrapper } from './SignoutPopover.styles'
 type SignOutPopType = {
@@ -23,13 +25,22 @@ const SignOutPopover:React.FC<SignOutPopType>=({children} )=>{
     const dispatch = useDispatch()
 
     const {RemoveLoggedInUser} = bindActionCreators(actionCreators,dispatch)
-  
+    const toast =useToast()
+
     const handleLogout=async()=>{
   
       try {
           const res = await logoutApi();
           if(res.status===200){
             RemoveLoggedInUser()
+            toast({
+                title: '',
+                description: "You Logged out successfully",
+                status: 'error',
+                duration: 5000,
+                position:"top",
+                isClosable: true,
+            })
           }else{
             throw Error("something went wrong")
           }
@@ -39,7 +50,7 @@ const SignOutPopover:React.FC<SignOutPopType>=({children} )=>{
     }
 
     return (
-        <Popover autoFocus={false}  placement={"right-end"}>
+        <Popover closeOnBlur autoFocus={false}  placement={"right-end"}>
             <PopoverTrigger>
                 <span style={{ cursor: "pointer" }}>{children}</span>
             </PopoverTrigger>
