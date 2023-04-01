@@ -18,6 +18,7 @@ type loginState={
 const Login:React.FC = () => {
 
 
+
     const  [loginData,setLoginData]  =  useState<loginState>({
       error:"",
       data:{
@@ -34,6 +35,8 @@ const Login:React.FC = () => {
         ...prev, data:{...prev.data, [name]:value}
       }))
     }
+    console.log(process.env.REACT_APP_BACKEND_URL)
+      
 
     const handleLogin =async()=>{
 
@@ -46,7 +49,8 @@ const Login:React.FC = () => {
 
       if(res.status===200){
         AddLoggedInUser(res.data.message)
-        navigate("/")
+        // navigate("/")
+        navigate(-1);
         toast({
           title: '',
           description: "You Logged in successfully",

@@ -290,6 +290,10 @@ input,select{
     color: white;
     font-size: 12px;
     letter-spacing: 1px;
+    :disabled{
+        opacity: 0.8;
+        pointer-events:none;
+    }
     :hover{
         background-color:  rgb(26 33 201);
     }

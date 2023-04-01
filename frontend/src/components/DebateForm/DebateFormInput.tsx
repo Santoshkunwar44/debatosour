@@ -94,7 +94,17 @@ const DebateFormInput:React.FC = () => {
       }))
     }
     const handleCreateDebate=async()=>{
-      
+
+      if(!data){
+        toast({
+          description: "You need to login first.",
+          status: 'error',
+          duration: 5000,
+          position:"top",
+          isClosable: true,
+        })
+        return 
+      }
 
       let theFormCopy ={...debateForm}
       let theTeams=theFormCopy.teams.map(team=>({...team,members:team.members.map(member=>member._id)}))
@@ -408,7 +418,7 @@ const DebateFormInput:React.FC = () => {
   </div>
 
   </div>
-                <button type='submit' className='create_debate_btn' onClick={handleCreateDebate}>
+                <button type='submit' className='create_debate_btn' disabled={!data} onClick={handleCreateDebate}>
                     CREATE DEBATE
                 </button>
     </DebateFormWrapper>

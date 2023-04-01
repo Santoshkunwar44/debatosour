@@ -46,7 +46,6 @@ app.use(session({
     name: "debatosour.sid",
     secret: "helloworld",
     resave: false,
-
     saveUninitialized: true,
     store,
     cookie: {
